@@ -7,15 +7,15 @@ import java.util.Random;
  */
 public class Main
 {
-    static final int SIZE = 3;
-    static int[][] field = new int[SIZE][SIZE];
-    static int turn = 1;
+    private static final int SIZE = 3;
+    private static int[][] field = new int[SIZE][SIZE];
+    private static int turn = 1;
 
     public static void drawField()
     {
-        for (final int[] row: field)
+        for (final int[] row : field)
         {
-            for (final int cell: row)
+            for (final int cell : row)
             {
                 System.out.print("\t" + (cell == 0 ? " " : cell == 1 ? "X" : "O") + "\t|");
             }
@@ -42,11 +42,16 @@ public class Main
         turn = turn == 1 ? 2 : 1;
     }
 
+    /**
+     * Point of enter
+     *
+     * @param args
+     */
     public static void main(final String[] args)
     {
         // System.out.println(Arrays.toString(args));
         drawField();
-        turn = new Random().nextInt(2)+1;
+        turn = new Random().nextInt(2) + 1;
         for (int i = 0; i < SIZE * SIZE; i++)
         {
             stepAI();
@@ -66,9 +71,9 @@ public class Main
 
         for (int row = 0; row < SIZE; row++)
         {
-            for (int column = 0; column < SIZE -1; column++)
+            for (int column = 0; column < SIZE - 1; column++)
             {
-                if (field[row][column] != 0 && field[row][column] == field[row][column+1])
+                if (field[row][column] != 0 && field[row][column] == field[row][column + 1])
                 {
                     isVictory = true;
                 }
@@ -109,9 +114,9 @@ public class Main
 
         if (!isVictory)
         {
-            for (int column = 0; column < SIZE -1; column++)
+            for (int column = 0; column < SIZE - 1; column++)
             {
-                if (field[column][column] != 0 && field[column][column] == field[column + 1][column+1])
+                if (field[column][column] != 0 && field[column][column] == field[column + 1][column + 1])
                 {
                     isVictory = true;
                 }
@@ -126,9 +131,9 @@ public class Main
 
         if (!isVictory)
         {
-            for (int column = 0; column < SIZE -1; column++)
+            for (int column = 0; column < SIZE - 1; column++)
             {
-                if (field[column][column] != 0 && field[column][SIZE -column-1] == field[column+1][SIZE -column-2])
+                if (field[column][column] != 0 && field[column][SIZE - column - 1] == field[column + 1][SIZE - column - 2])
                 {
                     isVictory = true;
                 }
